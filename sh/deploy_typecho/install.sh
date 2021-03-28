@@ -65,11 +65,9 @@ install_apache(){
     fi
     check_package_is_installed httpd Apache
     if [[ $? != 0 || $1 ]]; then
-        stty -echo
         yum install -y httpd
         systemctl start httpd
         systemctl enable httpd
-        stty echo
     fi
 }
 install_mysql() {
@@ -81,13 +79,11 @@ install_mysql() {
     fi
     check_package_is_installed mysql mysql5.7
     if [[ $? != 0 || $1 ]]; then
-        stty -echo
         wget -i http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
         yum -y install mysql57-community-release-el7-10.noarch.rpm
         yum -y install mysql-community-server
         systemctl start mysqld.service
         systemctl status mysqld.service
-        stty echo
     fi
 }
 install_php() {
@@ -99,14 +95,12 @@ install_php() {
     fi
     check_package_is_installed php Php7
     if [[ $? != 0 || $1 ]]; then
-        stty -echo
         rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm
         rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
         yum install -y php70w.x86_64 php70w-cli.x86_64 php70w-common.x86_64 php70w-gd.x86_64 php70w-ldap.x86_64 php70w-mbstring.x86_64 php70w-mcrypt.x86_64 php70w-mysql.x86_64 php70w-pdo.x86_64 php70w-fpm
         yum -y install php-mysql php-gd php-imap php-ldap php-odbc php-mbstring php-devel php-soap php-cli php-pdo
         yum -y install php-mcrypt php-tidy php-xml php-xmlrpc php-pear
         yum -y install php-pecl-memcache php-eaccelerator
-        stty echo
     fi
 }
 install_typecho(){
@@ -191,7 +185,9 @@ excute_command(){
         install_apache
         install_mysql
         install_php
-        update_mysql_password
+        if [ $? == 0 ]; then
+          update_mysql_password
+        fi
         install_typecho
     ;;
     2) install_apache
