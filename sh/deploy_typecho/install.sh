@@ -185,9 +185,7 @@ excute_command(){
         install_apache
         install_mysql
         install_php
-        if [ $? == 0 ]; then
-          update_mysql_password
-        fi
+        update_mysql_password
         install_typecho
     ;;
     2) install_apache
