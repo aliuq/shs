@@ -1,6 +1,6 @@
 #! /bin/bash
 
-set -E
+set -e
 
 function uninstallMySQL() {
     # 卸载mariab
