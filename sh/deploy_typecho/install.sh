@@ -216,5 +216,5 @@ excute_command(){
     echo_commands 1
 }
 
-echo -e "\n${red}* 请勿在安装过程中按下Enter键${plain}}\n"
+echo -e "\n${red}* 请勿在安装过程中按下Enter键${plain}\n"
 echo_commands
