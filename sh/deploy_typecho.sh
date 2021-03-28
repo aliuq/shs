@@ -50,7 +50,7 @@ function resetMySQLPassword() {
     read -p "请输入数据库密码：" password
     echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '$password';\nexit;" > /root/reset_pwd.sql
     echo $password
-    mysql </root/reset_pwd.sql
+    mysql --connect-expired-password </root/reset_pwd.sql
     exit
     rm /root/reset_pwd.sql
 }
@@ -96,7 +96,6 @@ echo "🧡 安装MySQL数据库"
 echo 
 
 type mysql >/dev/null 2>&1
-echo $?
 if [[ $? == 0 ]];
 then
     echo "MySQL已安装"
