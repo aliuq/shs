@@ -1,6 +1,9 @@
 #! /bin/bash
-
-set -e
+#
+# description：一键部署Typecho博客网站
+# version: 0.0.1
+# via 偏向技术
+# 
 
 function uninstallMySQL() {
     # 卸载mariab
@@ -71,7 +74,7 @@ function uninstallPhp7() {
     done
 }
 
-echo "🧡 一键部署博客网站"
+echo "🧡 一键部署Typecho博客网站"
 
 echo 
 echo "🧡 安装Apache"
@@ -93,6 +96,7 @@ echo "🧡 安装MySQL数据库"
 echo 
 
 type mysql >/dev/null 2>&1
+echo $?
 if [[ $? == 0 ]];
 then
     echo "MySQL已安装"
