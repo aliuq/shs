@@ -167,7 +167,7 @@ typechoLink=$(curl -s http://typecho.org/download | grep downloads | sed -r 's/.
 filename="typecho.tar.gz"
 if [[ $typechoLink ]];
 then
-    # wget $typechoLink -O $filename
+    wget $typechoLink -O $filename
     tar xzvf $filename -C /var/www/html
     mv /var/www/html/build /var/www/html/blog -f
     code=$(curl -m 20 -I -s -o /dev/null -w %{http_code}"\n" http://localhost/blog/install.php)
