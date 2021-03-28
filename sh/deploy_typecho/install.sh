@@ -208,7 +208,7 @@ excute_command(){
     ;;
     11) exit
     ;;
-    *) echo -e "[${yellow}$1${plain}] 命令不存在"
+    *) echo -e "\n[${yellow}$1${plain}] 命令不存在"
     ;;
     esac
     echo
