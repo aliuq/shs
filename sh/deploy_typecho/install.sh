@@ -136,6 +136,7 @@ write_root_mysql_conf(){
 update_mysql_password(){
     cat /root/.my.cnf &> /dev/null
     if [ $? == 0 ]; then
+        echo
         echo -n "请输入数据库密码(包含字母、数字、特殊符号): "
         read -s oldpassword
         echo
@@ -143,6 +144,7 @@ update_mysql_password(){
     else
         write_root_mysql_conf
     fi
+    echo
     echo -n "请输入新的数据库密码(包含字母、数字、特殊符号): "
     read -s password
     echo
@@ -209,6 +211,8 @@ excute_command(){
     *) echo -e "[${yellow}$1${plain}] 命令不存在"
     ;;
     esac
+    echo
+    echo
     echo_commands 1
 }
 
