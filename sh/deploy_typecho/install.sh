@@ -37,12 +37,10 @@ yellow='\033[0;33m'
 plain='\033[0m'
 
 echo_commands() {
-    if [ !$1 ]; then
-      for ((i=1;i<${#commands[@]}+1;i++))
+    for ((i=1;i<${#commands[@]}+1;i++))
       do
           echo -e "${green}${i}${plain}) ${commands[$i-1]}"
       done
-    fi
     echo
     read -p "请选择一个命令: " command
     excute_command $command
@@ -218,4 +216,5 @@ excute_command(){
     echo_commands 1
 }
 
+echo -e "\n${red}* 请勿在安装过程中按下Enter键${plain}}\n"
 echo_commands
