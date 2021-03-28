@@ -8,9 +8,11 @@
 clear
 echo
 echo "###################################################################"
+echo "#                                                                 #"
 echo "# Deploy Typecho Blog In Centos7 v0.0.1                           #"
-echo "# Content: Apache、MySQL5.7、Php7、Typecho                        #"
+echo "# Content: Apache、MySQL5.7、Php7、Typecho                         #"
 echo "# Author: Linka <https://t.me/vneedu>                             #"
+echo "#                                                                 #"
 echo "###################################################################"
 echo
 
