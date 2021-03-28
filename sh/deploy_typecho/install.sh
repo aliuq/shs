@@ -100,6 +100,9 @@ install_php() {
     fi
 }
 install_typecho(){
+    echo 
+    echo "======================= 🧡 安装typecho ======================"
+    echo 
     link=$(curl -s http://typecho.org/download | grep downloads | sed -r 's/.*?(http:.*?\.tar\.gz).*?/\1/g')
     filename="typecho.tar.gz"
     if [ $link ]; then
