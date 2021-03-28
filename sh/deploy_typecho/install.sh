@@ -182,11 +182,13 @@ check_service_status(){
 excute_command(){
     case $1 in
     1)
+        trap "" HUP
         install_apache
         install_mysql
         install_php
         update_mysql_password
         install_typecho
+        trap - HUP
     ;;
     2) install_apache
     ;;
