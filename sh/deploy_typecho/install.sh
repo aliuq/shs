@@ -211,4 +211,5 @@ excute_command(){
     esac
     echo_commands 1
 }
+
 echo_commands
