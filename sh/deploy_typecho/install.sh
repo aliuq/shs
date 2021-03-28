@@ -182,11 +182,13 @@ check_service_status(){
 excute_command(){
     case $1 in
     1)
+        stty -echo
         install_apache
         install_mysql
         install_php
         update_mysql_password
         install_typecho
+        stty echo
     ;;
     2) install_apache
     ;;
