@@ -105,8 +105,8 @@ install_typecho(){
     echo
     link=$(curl -s http://typecho.org/download | grep downloads | sed -r 's/.*?(http:.*?\.tar\.gz).*?/\1/g')
     filename="typecho.tar.gz"
-    if [[ $link ]]; then
-        wget $typechoLink -O $filename
+    if [ $link ]; then
+        wget $link -O $filename
         tar xzvf $filename -C /var/www/html
         mv /var/www/html/build/* /var/www/html -bf
         rm /var/www/html/build -rf
