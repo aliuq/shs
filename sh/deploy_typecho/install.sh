@@ -151,7 +151,6 @@ update_mysql_password(){
     mysql --connect-expired-password <<EOF
     ALTER USER 'root'@'localhost' IDENTIFIED BY '$password';
 EOF
-    exit
 }
 check_service_status(){
     httpd_status=$(systemctl status httpd | grep "Active:" | sed -r 's/Active: (.*?\)).*?/\1/g')
