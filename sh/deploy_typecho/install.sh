@@ -53,9 +53,9 @@ check_package_is_installed(){
     fi
 }
 install_apache(){
-    echo 
+    echo
     echo "======================= 🧡 安装Apache ======================="
-    echo 
+    echo
     if [ $1 ]; then
         uninstall_package httpd
     fi
@@ -67,15 +67,15 @@ install_apache(){
     fi
 }
 install_mysql() {
-    echo 
+    echo
     echo "======================= 🧡 安装MySQL5.7 ====================="
-    echo 
+    echo
     if [ $1 ]; then
         uninstall_package mysql5.7
     fi
     check_package_is_installed mysql mysql5.7
     if [[ $? != 0 || $1 ]]; then
-        wget -i http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm    
+        wget -i http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
         yum -y install mysql57-community-release-el7-10.noarch.rpm
         yum -y install mysql-community-server
         systemctl start mysqld.service
@@ -83,15 +83,15 @@ install_mysql() {
     fi
 }
 install_php() {
-    echo 
+    echo
     echo "======================= 🧡 安装Php7 ========================="
-    echo 
+    echo
     if [ $1 ]; then
         uninstall_package Php7
     fi
     check_package_is_installed php Php7
     if [[ $? != 0 || $1 ]]; then
-        rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm 
+        rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm
         rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
         yum install -y php70w.x86_64 php70w-cli.x86_64 php70w-common.x86_64 php70w-gd.x86_64 php70w-ldap.x86_64 php70w-mbstring.x86_64 php70w-mcrypt.x86_64 php70w-mysql.x86_64 php70w-pdo.x86_64 php70w-fpm
         yum -y install php-mysql php-gd php-imap php-ldap php-odbc php-mbstring php-devel php-soap php-cli php-pdo
@@ -100,12 +100,12 @@ install_php() {
     fi
 }
 install_typecho(){
-    echo 
+    echo
     echo "======================= 🧡 安装typecho ======================"
-    echo 
+    echo
     link=$(curl -s http://typecho.org/download | grep downloads | sed -r 's/.*?(http:.*?\.tar\.gz).*?/\1/g')
     filename="typecho.tar.gz"
-    if [ $link ]; then
+    if [[ $link ]]; then
         wget $typechoLink -O $filename
         tar xzvf $filename -C /var/www/html
         mv /var/www/html/build/* /var/www/html -bf
@@ -120,7 +120,7 @@ uninstall_package(){
         echo -e "[${green}Info${plain}] 正在卸载$name"
         rpm -e --nodeps $name
     done
-    echo 
+    echo
 }
 write_root_mysql_conf(){
     password=$1
@@ -136,13 +136,14 @@ update_mysql_password(){
     if [ $? == 0 ]; then
         echo -n "请输入数据库密码(包含字母、数字、特殊符号): "
         read -s oldpassword
+        echo
         write_root_mysql_conf $oldpassword
     else
         write_root_mysql_conf
     fi
     echo -n "请输入新的数据库密码(包含字母、数字、特殊符号): "
     read -s password
-    echo 
+    echo
     mysql --connect-expired-password <<EOF
     ALTER USER 'root'@'localhost' IDENTIFIED BY '$password';
 EOF
@@ -158,7 +159,7 @@ check_service_status(){
     code=$(curl -m 20 -I -s -o /dev/null -w %{http_code}"\n" http://localhost/phpinfo.php)
     if [[ $code == "200" ]]; then
         echo -e "${green}Php:          访问正常${plain}"
-        
+
     else
         echo -e "${red}Php:            访问失败${plain}"
     fi
@@ -187,7 +188,7 @@ excute_command(){
     ;;
     4) install_mysql
     ;;
-    5) 
+    5)
         uninstall_package mariadb
         uninstall_package mysql
     ;;
