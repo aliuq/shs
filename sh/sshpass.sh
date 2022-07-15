@@ -9,6 +9,9 @@ set -e
 #   View ssh config:
 #     cat /etc/ssh/sshd_config | grep -P "(AuthorizedKeysFile )|(PubkeyAuthentication )|(PasswordAuthentication )"
 #
+#  Update ssh config:
+#     sed -i "s/^#\?PasswordAuthentication no$/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+#
 
 red='\033[0;31m'
 green='\033[0;32m'
@@ -49,7 +52,7 @@ do_run() {
   while read user ip passwd
   do
     sleep 1
-    sshpass -p $passwd ssh-copy-id -i $secrect.pub $user@$ip
+    sshpass -p $passwd ssh-copy-id -i $secrect.pub -o StrictHostKeyChecking=no $user@$ip
     sleep 1
     sshpass -p $passwd ssh $user@$ip 'sed -i "s/^#\?PubkeyAuthentication \(yes\|no\)$/PubkeyAuthentication yes/g" /etc/ssh/sshd_config && systemctl restart sshd'
     echo
