@@ -4,7 +4,7 @@ set -e
 # Copy public key to remote host, and update ssh configuration `PubkeyAuthentication` to `yes`
 #
 # Usage:
-#   cat "<User> X.X.X.X <Password>" | sh <(curl -fsSL https://raw.githubusercontent.com/aliuq/shs/main/sh/sshpass.sh) --name test_rsa
+#   echo "<User> X.X.X.X <Password>" | sh <(curl -fsSL https://raw.githubusercontent.com/aliuq/shs/main/sh/sshpass.sh) --name test_rsa
 #  
 #   View ssh config:
 #     cat /etc/ssh/sshd_config | grep -P "(AuthorizedKeysFile )|(PubkeyAuthentication )|(PasswordAuthentication )"
