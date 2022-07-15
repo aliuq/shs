@@ -35,10 +35,10 @@ while [ $# -gt 0 ]; do
 done
 
 case "$mirror" in
-	Aliyun)
-		DENO_URL="https://x.deno.js.cn/install.sh"
+  Aliyun)
+    DENO_URL="https://x.deno.js.cn/install.sh"
     GLIBC_2_18_URL="https://aliuq.oss-cn-beijing.aliyuncs.com/deno/glibc-2.18.tar.gz"
-		;;
+    ;;
 esac
 
 ldd=$(ldd --version | grep 'ldd (GNU libc) ' | head -n 1)
