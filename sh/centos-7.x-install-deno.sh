@@ -13,8 +13,8 @@ set -e
 
 DEFAULT_DENO_URL="https://deno.land/x/install/install.sh"
 DEFAULT_GLIBC_2_18_URL="https://ftp.gnu.org/gnu/glibc/glibc-2.18.tar.gz"
-if [ -z "$DEFAULT_DENO_URL" ]; then
-	DEFAULT_DENO_URL=$DEFAULT_DENO_URL
+if [ -z "$DENO_URL" ]; then
+	DENO_URL=$DEFAULT_DENO_URL
 fi
 if [ -z "$GLIBC_2_18_URL" ]; then
 	GLIBC_2_18_URL=$DEFAULT_GLIBC_2_18_URL
