@@ -54,7 +54,8 @@ do_run() {
     sleep 1
     sshpass -p $passwd ssh-copy-id -i $secrect.pub -o StrictHostKeyChecking=no $user@$ip
     sleep 1
-    sshpass -p $passwd ssh $user@$ip 'sed -i "s/^#\?PubkeyAuthentication \(yes\|no\)$/PubkeyAuthentication yes/g" /etc/ssh/sshd_config && systemctl restart sshd'
+    sshpass -p $passwd ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $user@$ip \
+    'sed -i "s/^#\?PubkeyAuthentication \(yes\|no\)$/PubkeyAuthentication yes/g" /etc/ssh/sshd_config && systemctl restart sshd'
     echo
     echo -e "   ${green}ssh -i $secrect $user@$ip${plain}"
     echo
