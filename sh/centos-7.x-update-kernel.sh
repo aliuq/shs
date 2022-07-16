@@ -45,6 +45,14 @@ case $answer in
   grub2-mkconfig -o /boot/grub2/grub.cfg
 
   echo ""
+  echo -e "${green}- Remove old tools${plain}"
+  yum remove -y kernel-tools-libs.x86_64 kernel-tools.x86_64
+
+  echo ""
+  echo -e "${green}- Install new tools${plain}"
+  yum --disablerepo=\* --enablerepo=elrepo-kernel install -y kernel-lt-tools.x86_64
+
+  echo ""
   echo -e "${green}- Reboot wait 5s${plain}"
   echo ""
   sleep 5s
