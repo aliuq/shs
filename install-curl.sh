@@ -2,8 +2,7 @@
 set -e
 #
 # Usage
-#    curl -fsSL https://github.com/aliuq/shs/raw/main/install_curl.sh | sh
-#
+#    wget -O - https://github.com/aliuq/shs/raw/main/install-curl.sh | sh
 
 CURL_VERSION=${CURL_VERSION:-8.6.0}
 
@@ -27,5 +26,6 @@ cd curl-$CURL_VERSION && \
   --with-pic && \
 make && \
 make install && \
+cd / && \
 rm -rf /tmp/curl-$CURL_VERSION && \
 apk del curldeps
