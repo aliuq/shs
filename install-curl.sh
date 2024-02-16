@@ -3,8 +3,10 @@ set -e
 #
 # Usage
 #    wget -O - https://github.com/aliuq/shs/raw/main/install-curl.sh | sh
+#    wget -O - https://github.com/aliuq/shs/raw/main/install-curl.sh -- "8.5.0" | sh
+#
 
-CURL_VERSION=${CURL_VERSION:-8.6.0}
+CURL_VERSION=${1:-8.6.0}
 
 apk add --update --no-cache openssl-dev nghttp2-dev ca-certificates libpsl-dev
 apk add --update --no-cache --virtual curldeps g++ make perl
