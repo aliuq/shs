@@ -44,6 +44,7 @@ install_zsh() {
   cd /
   rm -f /tmp/zsh.tar.xz
   rm -rf /tmp/zsh-$ZSH_VERSION
+  zsh --version
 }
 
 check_commands curl tar make gcc
