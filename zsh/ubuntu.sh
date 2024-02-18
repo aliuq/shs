@@ -39,7 +39,8 @@ install_zsh() {
   curl -fsS -o /tmp/zsh.tar.xz $ZSH_ORIGIN/project/zsh/zsh/$ZSH_VERSION/zsh-$ZSH_VERSION.tar.xz && \
   tar -xf /tmp/zsh.tar.xz -C /tmp && \
   cd /tmp/zsh-$ZSH_VERSION && \
-  ./Util/preconfig && ./configure --with-tcsetpgrp && \ 
+  ./Util/preconfig && \
+  ./configure --with-tcsetpgrp && \ 
   make -j 20 install.bin install.modules install.fns && \
   cd / && rm -f /tmp/zsh.tar.xz && rm -rf /tmp/zsh-$ZSH_VERSION && \
   zsh --version
