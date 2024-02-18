@@ -38,10 +38,12 @@ install_zsh() {
   tar -xf /tmp/zsh.tar.xz -C /tmp && \
   cd /tmp/zsh-$ZSH_VERSION && \
   ./Util/preconfig && \
-  ./configure --without-tcsetpgrp && \ 
+  ./configure --without-tcsetpgrp --prefix=/usr --bindir=/bin && \ 
   make -j 20 install.bin install.modules install.fns && \
-  cd / && rm -f /tmp/zsh.tar.xz && rm -rf /tmp/zsh-$ZSH_VERSION && \
-  zsh --version
+  cd / && rm -rf /tmp/zsh.tar.xz && rm -rf /tmp/zsh-$ZSH_VERSION && \
+  zsh --version && \
+  echo "/bin/zsh" | tee -a /etc/shells && \
+  echo "/usr/bin/zsh" | tee -a /etc/shells
 }
 
 check_commands curl tar make gcc
