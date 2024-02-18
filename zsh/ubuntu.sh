@@ -40,7 +40,7 @@ install_zsh() {
   tar -xf /tmp/zsh.tar.xz -C /tmp && \
   cd /tmp/zsh-$ZSH_VERSION && \
   ./Util/preconfig && \
-  ./configure --with-tcsetpgrp && \ 
+  ./configure && \ 
   make -j 20 install.bin install.modules install.fns && \
   cd / && rm -f /tmp/zsh.tar.xz && rm -rf /tmp/zsh-$ZSH_VERSION && \
   zsh --version
