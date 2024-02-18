@@ -19,7 +19,7 @@ echo """
 
   Run the following commands to install required deps:
 
-    > apt install -y curl make gcc libncurses5-dev libncursesw5-dev
+    apt install -y curl make gcc libncurses5-dev libncursesw5-dev
 """
 
 command_exists() {
