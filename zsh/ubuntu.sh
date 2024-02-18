@@ -4,7 +4,9 @@ set -e
 
 # Usage
 #
-#
+#  >  curl -fsSL https://raw.githubusercontent.com/aliuq/shs/main/zsh/ubuntu.sh | sh
+#  >  curl -fsSL https://raw.githubusercontent.com/aliuq/shs/main/zsh/ubuntu.sh | sh -s 5.9
+#  >  ZSH_ORIGIN=https://udomain.dl.sourceforge.net curl -fsSL https://raw.githubusercontent.com/aliuq/shs/main/zsh/ubuntu.sh | sh -s 5.9
 #
 ZSH_VERSION=${1:-5.9}
 ZSH_ORIGIN=${ZSH_ORIGIN:-"https://zenlayer.dl.sourceforge.net"}
@@ -14,6 +16,10 @@ echo """
 
   OS: Ubuntu
   Requireed: curl make gcc libncurses5-dev libncursesw5-dev
+
+  Run the following commands to install required deps:
+
+    > apt install -y curl make gcc libncurses5-dev libncursesw5-dev
 """
 
 command_exists() {
@@ -29,11 +35,6 @@ check_commands() {
   done
 }
 
-install_deps() {
-  apt update
-  apt install -y curl make gcc libncurses5-dev libncursesw5-dev
-}
-
 install_zsh() {
   curl -fsS -o /tmp/zsh.tar.xz $ZSH_ORIGIN/project/zsh/zsh/$ZSH_VERSION/zsh-$ZSH_VERSION.tar.xz
   tar -xf /tmp/zsh.tar.xz -C /tmp
@@ -46,5 +47,4 @@ install_zsh() {
 }
 
 check_commands curl tar make gcc
-install_deps
 install_zsh
