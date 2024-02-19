@@ -42,7 +42,9 @@ for arg in "$@"; do
   esac
 done
 
-
+log() {
+  printf "${cyan}[INFO] $(date "+%Y-%m-%d %H:%M:%S")${plain} $1\n"
+}
 info() {
   printf "$1\n"
 }
