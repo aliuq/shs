@@ -21,24 +21,24 @@ dry_run=false
 
 for arg in "$@"; do
   case "$arg" in
-    --verbose)
-      verbose=true
-      ;;
-    -v)
-      verbose=true
-      ;;
-    --force)
-      force=true
-      ;;
-    -y)
-      force=true
-      ;;
-    --dry-run)
-      dry_run=true
-      ;;
-    --help)
-      help=true
-      ;;
+  --verbose)
+    verbose=true
+    ;;
+  -v)
+    verbose=true
+    ;;
+  --force)
+    force=true
+    ;;
+  -y)
+    force=true
+    ;;
+  --dry-run)
+    dry_run=true
+    ;;
+  --help)
+    help=true
+    ;;
   esac
 done
 
@@ -103,6 +103,28 @@ set_var() {
       exit 1
     fi
   fi
+}
+
+# 获取年月日时分秒格式的时间
+get_date() {
+  date '+%Y年%m月%d日 %H时%M分%S秒'
+}
+
+# 发送 Webhook 消息
+send_webhook() {
+  # 如果不存在 MY_WEBHOOK_URL 环境变量，则不发送消息
+  if [ -z "$MY_WEBHOOK_URL" ]; then
+    return
+  fi
+
+  # 如果不存在消息内容，则不发送消息
+  if [ -z "$1" ]; then
+    return
+  fi
+
+  local content="$1"
+  body="{\"content\":\"$content\"}"
+  run "curl -X POST -H 'Content-Type: application/json' -d '$body' \"$MY_WEBHOOK_URL\""
 }
 
 set_var
