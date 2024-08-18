@@ -2,9 +2,30 @@
 
 # Usage:
 #
-#  > source <(curl -sSL https://github.com/aliuq/shs/raw/main/helper.sh)
-#  > source <(wget -qO- https://github.com/aliuq/shs/raw/main/helper.sh)
+# For shell:
 #
+# . /dev/stdin <<EOF
+# $(curl -sSL https://raw.githubusercontent.com/aliuq/shs/main/helper.sh)
+# EOF
+#
+# . /dev/stdin <<EOF
+# $(wget -qO- https://github.com/aliuq/shs/raw/main/helper.sh)
+# EOF
+
+# For bash:
+#
+# source <(curl -sSL https://raw.githubusercontent.com/aliuq/shs/main/helper.sh)
+# source <(wget -qO- https://raw.githubusercontent.com/aliuq/shs/main/helper.sh)
+#
+# Another short link:
+#
+# + https://s.xod.cc/shell-helper
+# + https://bit.ly/shell-helper
+#
+# Another short mirror link:
+#
+# + https://s.xod.cc/shell-helper-mirror
+# + https://bit.ly/shell-helper-mirror
 
 # Colors
 bold="\033[1m"
