@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/bash
 
 # Usage:
 #
@@ -40,6 +40,8 @@ force=false
 help=false
 dry_run=false
 
+remaining_args=""
+
 for arg in "$@"; do
   case "$arg" in
   --verbose)
@@ -60,8 +62,20 @@ for arg in "$@"; do
   --help)
     help=true
     ;;
+  *)
+    remaining_args="$remaining_args $arg"
+    ;;
   esac
 done
+
+remaining_args=$(echo "$remaining_args" | sed 's/^ *//')
+set -- $remaining_args
+
+print_arg_warn() {
+  if $verbose; then
+    info "Param $(yellow --verbose/-v/--force/-y/--dry-run/--help) will be ignored"
+  fi
+}
 
 log() {
   printf "${cyan}[INFO] $(date "+%Y-%m-%d %H:%M:%S")${plain} $1\n"
@@ -117,10 +131,8 @@ set_var() {
     elif command_exists su; then
       sh_c="su -c"
     else
-      cat >&2 <<-EOF
-			Error: this installer needs the ability to run commands as root.
-			We are unable to find either "sudo" or "su" available to make this happen.
-			EOF
+      printf >&2 "Error: this installer needs the ability to run commands as root.\n"
+      printf >&2 "We are unable to find either \"sudo\" or \"su\" available to make this happen.\n"
       exit 1
     fi
   fi
@@ -148,4 +160,5 @@ send_webhook() {
   run "curl -X POST -H 'Content-Type: application/json' -d '$body' \"$MY_WEBHOOK_URL\""
 }
 
+print_arg_warn
 set_var
