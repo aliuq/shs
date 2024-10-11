@@ -262,5 +262,15 @@ read_confirm_and_input() {
   echo $confrim
 }
 
+is_ubuntu() {
+  [ -f /etc/lsb-release ] && grep -q "DISTRIB_ID=Ubuntu" /etc/lsb-release
+}
+is_centos() {
+  [ -f /etc/redhat-release ] && grep -q "CentOS" /etc/redhat-release
+}
+is_debian() {
+  [ -f /etc/os-release ] && grep -q "ID=debian" /etc/os-release
+}
+
 print_arg_warn
 set_var
